@@ -49,11 +49,10 @@ class ProductListViewController: UIViewController, UITableViewDataSource, UITabl
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         guard let product = viewModel.product(at: indexPath.row) else { return }
-//        viewModel.performHeavyComputation(product: product) { [weak self] details in
         let detailVC = self.storyboard?.instantiateViewController(withIdentifier: "ProductDetailViewController") as! ProductDetailViewController
         detailVC.product = product // Pass the product
         self.navigationController?.pushViewController(detailVC, animated: true)
-//        }
     }
 }
